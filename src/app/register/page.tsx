@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Eye, EyeOff, ArrowRight, Mountain } from 'lucide-react';
 import { useAuth } from '@/security/service/AuthContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface UserRegistration {
     firstName: string;
@@ -31,6 +32,10 @@ export default function RegisterPage() {
     const [isLoading, setIsLoading] = useState(false);
 
     const { register } = useAuth();
+
+    const handleGoogleSignIn = () => {
+        window.location.href = 'http://localhost:8030/oauth2/authorization/google';
+    }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -315,8 +320,8 @@ export default function RegisterPage() {
 
                         {/* Social buttons */}
                         <div className="grid grid-cols-2 gap-4">
-                            <Link href="http://localhost:8030/oauth2/authorization/google" >
                             <button
+                                onClick={() => handleGoogleSignIn()}
                                 type="button"
                                 className="flex items-center justify-center space-x-2 px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white hover:bg-slate-600 transition-all group"
                             >
@@ -328,7 +333,7 @@ export default function RegisterPage() {
                                 </svg>
                                 <span>Google</span>
                             </button>
-                            </Link>
+                            
 
 
                             <button

@@ -22,6 +22,10 @@ export default function LoginPage() {
 
     const { login } = useAuth();
 
+    const handleGoogleSignIn = () => {
+        window.location.href = 'http://localhost:8030/oauth2/authorization/google';
+    }
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -242,6 +246,7 @@ export default function LoginPage() {
                         {/* Social buttons */}
                         <div className="grid grid-cols-2 gap-4">
                             <button
+                                onClick={() => handleGoogleSignIn()}
                                 type="button"
                                 className="flex items-center justify-center space-x-2 px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white hover:bg-slate-700 transition-all backdrop-blur-sm group"
                             >
